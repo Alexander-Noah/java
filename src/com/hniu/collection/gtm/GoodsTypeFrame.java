@@ -26,7 +26,7 @@ public class GoodsTypeFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setBackground(new Color(240, 240, 240));
-
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         // 主面板
         JPanel mainPanel = new JPanel(new BorderLayout(15, 15));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -39,11 +39,12 @@ public class GoodsTypeFrame extends JFrame {
         lblTitle.setFont(new Font("微软雅黑", Font.BOLD, 24));
         lblTitle.setForeground(new Color(70, 130, 180));
         titlePanel.add(lblTitle);
-        mainPanel.add(titlePanel, BorderLayout.NORTH);
+        mainPanel.add(titlePanel, BorderLayout.PAGE_START);
 
         // 按钮面板
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
         buttonPanel.setBackground(new Color(240, 240, 240));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 
         // 修改按钮颜色
         JButton btnAdd = createStyledButton("添加", new Color(138, 43, 226)); // 紫色
@@ -58,16 +59,14 @@ public class GoodsTypeFrame extends JFrame {
         buttonPanel.add(btnAdd);
         buttonPanel.add(btnEdit);
         buttonPanel.add(btnDelete);
-        mainPanel.add(buttonPanel, BorderLayout.CENTER);
 
         // 表格面板
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createEmptyBorder(20, 0, 0, 0),
+                BorderFactory.createEmptyBorder(0, 0, 0, 0),
                 BorderFactory.createLineBorder(new Color(200, 200, 200), 1)
         ));
         tablePanel.setBackground(Color.WHITE);
-
         // 表格模型
         String[] columns = {"序号", "类型编号", "类型名称", "描述"};
         tableModel = new DefaultTableModel(columns, 0) {
@@ -90,8 +89,9 @@ public class GoodsTypeFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         tablePanel.add(scrollPane, BorderLayout.CENTER);
+        tablePanel.add(buttonPanel, BorderLayout.PAGE_START);
 
-        mainPanel.add(tablePanel, BorderLayout.SOUTH);
+        mainPanel.add(tablePanel, BorderLayout.CENTER);
         add(mainPanel);
     }
 
